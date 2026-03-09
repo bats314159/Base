@@ -5,16 +5,26 @@ contract MyContract {
     string public message;
     mapping(address => string) public userMessages;
 
+    address public owner;
+    uint256 public messageSetCount;
+
     event MessageSet(string newMessage);
     event UserMessageSet(address user, string newMessage);
     event MessageReset();
 
-    constructor(string memory _message) {
-        message = _message;
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only owner can call this function");
+        _;
     }
 
-    function setMessage(string memory _message) public {
+    constructor(string memory _message) {
         message = _message;
+        owner = msg.sender;
+    }
+
+    function setMessage(string memory _message) public onlyOwner {
+        message = _message;
+        messageSetCount++;
         emit MessageSet(_message);
     }
 
@@ -27,7 +37,7 @@ contract MyContract {
         emit UserMessageSet(msg.sender, _message);
     }
 
-    function resetMessage() public {
+    function resetMessage() public onlyOwner {
         message = "";
         emit MessageReset();
     }
