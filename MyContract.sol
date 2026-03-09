@@ -4,6 +4,7 @@ pragma solidity ^0.8.0;
 contract MyContract {
     string public message;
     mapping(address => string) public userMessages;
+    mapping(address => uint256) public userMessageTimestamps;
 
     address public owner;
     uint256 public messageSetCount;
@@ -34,6 +35,7 @@ contract MyContract {
 
     function setUserMessage(string memory _message) public {
         userMessages[msg.sender] = _message;
+        userMessageTimestamps[msg.sender] = block.timestamp;
         emit UserMessageSet(msg.sender, _message);
     }
 
@@ -54,6 +56,7 @@ contract MyContract {
 
     function deleteUserMessage() public {
         delete userMessages[msg.sender];
+        userMessageTimestamps[msg.sender] = 0;
         emit UserMessageSet(msg.sender, "");
     }
 }
