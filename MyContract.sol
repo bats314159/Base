@@ -3,8 +3,10 @@ pragma solidity ^0.8.0;
 
 contract MyContract {
     string public message;
+    mapping(address => string) public userMessages;
 
     event MessageSet(string newMessage);
+    event UserMessageSet(address user, string newMessage);
 
     constructor(string memory _message) {
         message = _message;
@@ -17,5 +19,10 @@ contract MyContract {
 
     function getMessageLength() public view returns (uint256) {
         return bytes(message).length;
+    }
+
+    function setUserMessage(string memory _message) public {
+        userMessages[msg.sender] = _message;
+        emit UserMessageSet(msg.sender, _message);
     }
 }
