@@ -54,6 +54,11 @@ contract MyContract {
         return userMessages[user];
     }
 
+    function getUserMessageAge(address user) public view returns (uint256) {
+        if (userMessageTimestamps[user] == 0) return 0;
+        return block.timestamp - userMessageTimestamps[user];
+    }
+
     function deleteUserMessage() public {
         delete userMessages[msg.sender];
         userMessageTimestamps[msg.sender] = 0;
