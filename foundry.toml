@@ -1,0 +1,11 @@
+[profile.default]
+src = 'src'
+out = 'out'
+libs = ['lib']
+
+[rpc_endpoints]
+base_mainnet = "https://mainnet.base.org"
+base_goerli = "https://goerli.base.org"
+
+[etherscan]
+base = { key = "${BASESCAN_API_KEY}" }
