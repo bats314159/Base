@@ -51,4 +51,9 @@ contract MyContract {
     function getUserMessage(address user) public view returns (string memory) {
         return userMessages[user];
     }
+
+    function deleteUserMessage() public {
+        delete userMessages[msg.sender];
+        emit UserMessageSet(msg.sender, "");
+    }
 }
