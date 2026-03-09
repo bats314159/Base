@@ -7,6 +7,7 @@ contract MyContract {
 
     event MessageSet(string newMessage);
     event UserMessageSet(address user, string newMessage);
+    event MessageReset();
 
     constructor(string memory _message) {
         message = _message;
@@ -24,5 +25,10 @@ contract MyContract {
     function setUserMessage(string memory _message) public {
         userMessages[msg.sender] = _message;
         emit UserMessageSet(msg.sender, _message);
+    }
+
+    function resetMessage() public {
+        message = "";
+        emit MessageReset();
     }
 }
