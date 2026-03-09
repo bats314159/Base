@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyContract dApp</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        input, button { margin: 5px; padding: 10px; }
+        .message { background: #f0f0f0; padding: 10px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MyContract dApp on Base</h1>
+        <button id="connectWallet">Connect Wallet</button>
+        <p id="account">Not connected</p>
+
+        <h2>Global Message</h2>
+        <div class="message" id="globalMessage">Loading...</div>
+        <input type="text" id="newGlobalMessage" placeholder="New global message">
+        <button id="setGlobalMessage">Set Global Message (Owner Only)</button>
+        <button id="appendGlobalMessage">Append to Global Message (Owner Only)</button>
+        <button id="resetGlobalMessage">Reset Global Message (Owner Only)</button>
+        <p>Message Set Count: <span id="messageCount">0</span></p>
+
+        <h2>Your Personal Message</h2>
+        <div class="message" id="userMessage">Loading...</div>
+        <input type="text" id="newUserMessage" placeholder="Your message">
+        <button id="setUserMessage">Set Personal Message</button>
+        <button id="deleteUserMessage">Delete Personal Message</button>
+        <p>Age: <span id="messageAge">0</span> seconds</p>
+
+        <h2>Query Other User's Message</h2>
+        <input type="text" id="queryAddress" placeholder="User address">
+        <button id="queryUserMessage">Query</button>
+        <div class="message" id="queriedMessage"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
