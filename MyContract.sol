@@ -14,4 +14,8 @@ contract MyContract {
         message = _message;
         emit MessageSet(_message);
     }
+
+    function getMessageLength() public view returns (uint256) {
+        return bytes(message).length;
+    }
 }
