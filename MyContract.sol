@@ -31,4 +31,8 @@ contract MyContract {
         message = "";
         emit MessageReset();
     }
+
+    function getUserMessage(address user) public view returns (string memory) {
+        return userMessages[user];
+    }
 }
