@@ -42,6 +42,12 @@ contract MyContract {
         emit MessageReset();
     }
 
+    function appendToMessage(string memory _additional) public onlyOwner {
+        message = string(abi.encodePacked(message, _additional));
+        messageSetCount++;
+        emit MessageSet(message);
+    }
+
     function getUserMessage(address user) public view returns (string memory) {
         return userMessages[user];
     }
